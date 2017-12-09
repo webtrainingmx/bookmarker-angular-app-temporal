@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {BookmarksService} from './services/bookmarks.service';
 import {Bookmark} from './models/bookmark.model';
 import {BookmarksResponse} from './models/bookmarks-response.model';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-bookmarks',
@@ -13,6 +13,7 @@ export class BookmarksComponent implements OnInit {
   bookmarks: Array<Bookmark>;
   displayedColumns = ['id', 'title', 'description', 'created'];
   dataSource;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -29,6 +30,7 @@ export class BookmarksComponent implements OnInit {
       (data: BookmarksResponse) => {
         this.bookmarks = data.bookmarks;
         this.dataSource = new MatTableDataSource<Bookmark>(this.bookmarks);
+        this.dataSource.paginator = this.paginator;
       },
       error => {
         console.error(error);
