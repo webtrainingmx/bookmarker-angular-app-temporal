@@ -11,7 +11,7 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 })
 export class BookmarksComponent implements OnInit {
   bookmarks: Array<Bookmark>;
-  displayedColumns = ['id', 'title', 'description', 'created'];
+  displayedColumns = ['id', 'title', 'description', 'created', 'actions'];
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -25,6 +25,10 @@ export class BookmarksComponent implements OnInit {
   constructor(public bookmarksService: BookmarksService) {
   }
 
+  openBookmarkURL(bookmark: Bookmark) {
+    // @FIXME: Use a service instead!!!
+    window.location.href = bookmark.url;
+  }
   ngOnInit() {
 
     this.bookmarksService.getAll().subscribe(
