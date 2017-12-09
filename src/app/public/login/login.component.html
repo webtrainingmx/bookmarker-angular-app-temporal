@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-xs-12">
+
+    <form (ngSubmit)="onSubmit($event)">
+
+      <mat-form-field>
+        <input matInput placeholder="Usuario" [formControl]="username" required>
+        <mat-error *ngIf="username.invalid">{{ getErrorMessageForUsername() }}</mat-error>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <input matInput type="password" placeholder="Contraseña" [formControl]="password" required>
+        <mat-error *ngIf="password.invalid">{{ getErrorMessageForPassword() }}</mat-error>
+      </mat-form-field>
+
+      <div class="b-submit clearfix">
+        <button mat-raised-button color="primary" [disabled]="username.invalid || password.invalid">
+          Iniciar
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
