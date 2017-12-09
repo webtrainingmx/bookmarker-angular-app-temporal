@@ -5,29 +5,29 @@
     </mat-form-field>
   </div>
 
-  <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource" matSort>
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef> Título </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Título </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef> Descripción </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="created">
-      <mat-header-cell *matHeaderCellDef> Creado el: </mat-header-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Creado el: </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
     </ng-container>
 
