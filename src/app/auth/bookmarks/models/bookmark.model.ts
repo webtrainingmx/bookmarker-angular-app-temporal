@@ -8,5 +8,5 @@ export class Bookmark {
   url: string;
   created?: string;
   modified?: string;
-  user: User;
+  user?: User;
 }

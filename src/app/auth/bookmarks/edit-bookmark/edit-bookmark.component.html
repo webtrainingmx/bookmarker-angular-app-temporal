@@ -1,0 +1,22 @@
+<form #editForm="ngForm" (ngSubmit)="onSubmit($event)">
+
+  <div class="b-controls-container">
+
+    <mat-form-field>
+      <input matInput placeholder="Título" [formControl]="title" [(ngModel)]="bookmark.title" required>
+      <mat-error *ngIf="title.invalid">{{getErrorMessageForTitle()}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <input matInput placeholder="Url" [formControl]="url" [(ngModel)]="bookmark.url" required>
+      <mat-error *ngIf="url.invalid">{{getErrorMessageForURL()}}</mat-error>
+    </mat-form-field>
+
+    <div class="clearfix">
+      <button mat-raised-button color="primary" [disabled]="isBeingSaved">
+        Guardar
+      </button>
+    </div>
+  </div>
+
+</form>

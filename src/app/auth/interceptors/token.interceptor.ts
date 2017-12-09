@@ -20,7 +20,7 @@ export class TokenInterceptor implements HttpInterceptor {
       setHeaders: {
         'Api-Token': token,
         'Authorization': `User ${token}`, // TODO: JWT-based token
-        'X-Request-With': 'XMLHttpRequest'
+        'X-Requested-With': 'XMLHttpRequest'
       }
     });
 
