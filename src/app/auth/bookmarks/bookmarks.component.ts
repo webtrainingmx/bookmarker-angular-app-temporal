@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BookmarksService} from './services/bookmarks.service';
 import {Bookmark} from './models/bookmark.model';
 import {BookmarksResponse} from './models/bookmarks-response.model';
-import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatMenuTrigger, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {WindowReferenceService} from '../../common/services/window-reference.service';
 
 @Component({
   selector: 'app-bookmarks',
@@ -15,6 +16,8 @@ export class BookmarksComponent implements OnInit {
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
+  nativeWindow: any;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -22,13 +25,17 @@ export class BookmarksComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  constructor(public bookmarksService: BookmarksService) {
+  constructor(public bookmarksService: BookmarksService,
+              public _windowReference: WindowReferenceService) {
+    this.nativeWindow = this._windowReference.getNativeWindow();
   }
 
-  openBookmarkURL(bookmark: Bookmark) {
-    // @FIXME: Use a service instead!!!
-    window.location.href = bookmark.url;
+  openBookmarkURL(bookmark: Bookmark, event: Event) {
+    event.preventDefault();
+    // window.location.href = bookmark.url;
+    this.nativeWindow.open(bookmark.url);
   }
+
   ngOnInit() {
 
     this.bookmarksService.getAll().subscribe(

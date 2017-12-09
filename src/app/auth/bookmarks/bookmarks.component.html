@@ -9,37 +9,37 @@
 
     <!-- Position Column -->
     <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Id</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}}</mat-cell>
     </ng-container>
 
     <!-- Name Column -->
     <ng-container matColumnDef="title">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Título </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Título</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}}</mat-cell>
     </ng-container>
 
     <!-- Weight Column -->
     <ng-container matColumnDef="description">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}}</mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="created">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Creado el: </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Creado el:</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.created}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
       <mat-header-cell *matHeaderCellDef>Acciones</mat-header-cell>
 
       <mat-cell *matCellDef="let element">
-        <button mat-icon-button [matMenuTriggerFor]="menu">
+        <button mat-button [matMenuTriggerFor]="menu">
           <mat-icon>more_vert</mat-icon>
         </button>
         <mat-menu #menu="matMenu">
-          <button mat-menu-item (click)="openBookmarkURL(element)">
+          <button mat-menu-item (click)="openBookmarkURL(element, $event)">
             Abrir
           </button>
           <!--<button mat-menu-item disabled>-->
