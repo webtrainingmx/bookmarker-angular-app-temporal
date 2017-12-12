@@ -13,7 +13,7 @@ import {
   MatMenuModule,
   MatSortModule,
   MatTableModule,
-  MatPaginatorModule, MatDialogModule
+  MatPaginatorModule, MatDialogModule, MatPaginatorIntl
 } from '@angular/material';
 
 import {AppComponent} from './app.component';
@@ -33,6 +33,8 @@ import {BookmarksComponent} from './auth/bookmarks/bookmarks.component';
 import {WindowReferenceService} from './common/services/window-reference.service';
 import {EditBookmarkComponent} from './auth/bookmarks/edit-bookmark/edit-bookmark.component';
 import {ModalErrorLoginComponent} from './public/login/modal-error-login/modal-error-login.component';
+import {MatPaginatorIntlSpanishProvider} from './common/paginator/mat-paginator-intl-spanish.provider';
+import { CutStringInWordsPipe } from './common/pipes/cut-string-in-words.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {ModalErrorLoginComponent} from './public/login/modal-error-login/modal-e
     NotFoundComponent,
     BookmarksComponent,
     EditBookmarkComponent,
-    ModalErrorLoginComponent
+    ModalErrorLoginComponent,
+    CutStringInWordsPipe
   ],
   entryComponents: [
     EditBookmarkComponent,
@@ -78,7 +81,12 @@ import {ModalErrorLoginComponent} from './public/login/modal-error-login/modal-e
     AuthenticationService,
     BookmarksService,
     WindowReferenceService,
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+    {
+      provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true
+    },
+    {
+      provide: MatPaginatorIntl, useClass: MatPaginatorIntlSpanishProvider
+    }
   ],
   bootstrap: [AppComponent]
 })

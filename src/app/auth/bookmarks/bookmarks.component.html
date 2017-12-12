@@ -22,13 +22,13 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Descripción</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.description}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.description | cutStringInWords:10}}</mat-cell>
     </ng-container>
 
     <!-- Color Column -->
     <ng-container matColumnDef="created">
       <mat-header-cell *matHeaderCellDef mat-sort-header> Creado el:</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.created}}</mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.created | date:"dd/MM/yyyy"}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="actions">
@@ -54,8 +54,14 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
 
-  <mat-paginator #paginator
-                 [pageSize]="10"
-                 [pageSizeOptions]="[5, 10, 20]">
+  <!--<mat-paginator #paginator-->
+  <!--[pageSize]="10"-->
+  <!--[pageSizeOptions]="[5, 10, 20]">-->
+  <!--</mat-paginator>-->
+  <mat-paginator [length]="length"
+                 [pageSize]="pageSize"
+                 [pageSizeOptions]="pageSizeOptions"
+                 (page)="pageEvent = $event">
+
   </mat-paginator>
 </div>

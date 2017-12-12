@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {BookmarksService} from './services/bookmarks.service';
 import {Bookmark} from './models/bookmark.model';
 import {BookmarksResponse} from './models/bookmarks-response.model';
-import {MatDialog, MatMenuTrigger, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
+import {MatDialog, MatMenuTrigger, MatPaginator, MatSort, MatTableDataSource, PageEvent} from '@angular/material';
 import {WindowReferenceService} from '../../common/services/window-reference.service';
 import {EditBookmarkComponent} from './edit-bookmark/edit-bookmark.component';
 
@@ -20,6 +20,15 @@ export class BookmarksComponent implements OnInit {
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   nativeWindow: any;
 
+
+  // MatPaginator inputs
+  length = 50;
+  pageSize = 5;
+  pageSizeOptions = [5, 10, 20];
+
+  //
+  pageEvent: PageEvent;
+
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
@@ -30,6 +39,10 @@ export class BookmarksComponent implements OnInit {
               public _windowReference: WindowReferenceService,
               public dialog: MatDialog) {
     this.nativeWindow = this._windowReference.getNativeWindow();
+  }
+
+  setPageSizeOptions(setPageSizeOptionsInput: string) {
+    this.pageSizeOptions = setPageSizeOptionsInput.split(',').map(str => +str);
   }
 
   openBookmarkURL(bookmark: Bookmark, event: Event) {
